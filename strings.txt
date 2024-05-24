@@ -1,0 +1,74 @@
+PLUGIN_SOMAFM
+	EN	SomaFM
+
+PLUGIN_SOMAFM_DESC
+	EN	Play radio channels from SomaFM
+
+PLUGIN_SOMAFM_MENU_LOCATION
+	EN	Menu location
+
+PLUGIN_SOMAFM_MENU_LOCATION_DESC
+	EN	Show the SomaFM menu in either the Radio menu, or the My Apps menu. Requires a restart to take effect.
+
+PLUGIN_SOMAFM_MENU_LOCATION_RADIO
+	EN	Radio
+
+PLUGIN_SOMAFM_MENU_LOCATION_APPS
+	EN	My Apps
+
+PLUGIN_SOMAFM_ORDER_BY
+	EN	Order channels
+
+PLUGIN_SOMAFM_ORDER_BY_DESC
+	EN	Choose how to order the channels. Sorting by popularity sorts by the number of current listeners. Sorting by title sorts the channels in alphabetical order. No sorting orders the channels as defined by SomaFM.
+
+PLUGIN_SOMAFM_ORDER_BY_POLULARITY
+	EN	Popularity
+
+PLUGIN_SOMAFM_ORDER_BY_TITLE
+	EN	Title
+
+PLUGIN_SOMAFM_ORDER_BY_NONE
+	EN	No sorting
+
+PLUGIN_SOMAFM_STREAMING_QUALITY
+	EN	Streaming quality
+
+PLUGIN_SOMAFM_STREAMING_QUALITY_DESC
+	EN	Streaming quality to use for SomaFM channels
+
+PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_AAC
+	EN	Highest (AAC)
+
+PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_MP3
+	EN	Highest (MP3)
+
+PLUGIN_SOMAFM_STREAMING_QUALITY_HIGH_AACP
+	EN	High (AAC+)
+
+PLUGIN_SOMAFM_STREAMING_QUALITY_LOW_AACP
+	EN	Low (AAC+)
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT
+	EN	Second line text
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT_DESC
+	EN	Not all skins/apps can display a second line. The default skin does not. Material skin can display the second line.
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT_DESCRIPTION
+	EN	Channel description
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT_LAST_PLAYED
+	EN	Last played song
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT_LISTENERS
+	EN	Number of listeners
+
+PLUGIN_SOMAFM_SECOND_LINE_TEXT_LISTENERS_SPRINTF
+	EN	%s listeners
+
+PLUGIN_SOMAFM_DESCRIPTION_IN_TITLE
+	EN	Show description in title 
+
+PLUGIN_SOMAFM_DESCRIPTION_IN_TITLE_DESC
+	EN	Show the channel description as part of the title if not already displayed on the second line.

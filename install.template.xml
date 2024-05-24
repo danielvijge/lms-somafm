@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<extension>
+    <name>PLUGIN_SOMAFM</name>
+    <module>Plugins::SomaFM::Plugin</module>
+    <version>{{ env['VERSION'] }}</version>
+    <description>PLUGIN_SOMAFM_DESC</description>
+    <icon>plugins/SomaFM/SomaFM_svg.png</icon>
+    <defaultState>enabled</defaultState>
+    <targetApplication>
+        <id>SlimServer</id>
+        <minVersion>7.9</minVersion>
+        <maxVersion>*</maxVersion>
+    </targetApplication>
+    <optionsURL>plugins/SomaFM/settings/basic.html</optionsURL>
+    <creator>Daniel Vijge</creator>
+    <email>spam+squeezebox@vijge.net</email>
+</extension>

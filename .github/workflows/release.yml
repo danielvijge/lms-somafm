@@ -1,0 +1,103 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    # tags:
+    #   - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Set version number (release build)
+        if: contains(github.ref, 'refs/tags/')
+        run: |
+          echo "VERSION=`echo ${GITHUB_REF##*/}`" >> $GITHUB_ENV
+          echo "RELEASE_CHANNEL=release" >> $GITHUB_ENV
+          echo "FOLDER=." >> $GITHUB_ENV
+
+      - name: Set version number (development build)
+        if: "!contains(github.ref, 'refs/tags/')"
+        run: |
+          echo "VERSION=`git describe --tags --abbrev=0 || echo 0.0`.`git rev-list $(git describe --tags --abbrev=0)..HEAD --count`-dev" >> $GITHUB_ENV
+          echo "RELEASE_CHANNEL=dev" >> $GITHUB_ENV
+          echo "FOLDER=dev-builds" >> $GITHUB_ENV
+
+      - name: Test if release number matches x.y.z
+        if: env.RELEASE_CHANNEL == 'release'
+        run: |
+          ! [[ ${{ env.VERSION }} =~ ^[0-9]+.[0-9]+$ ]] && echo "Release tag must be in the form of x.y" && exit 1 || echo "Release tag format is correct"
+
+      - name: Create install XML file
+        uses: cuchi/jinja2-action@v1.2.2
+        with:
+          template: install.template.xml
+          output_file: install.xml
+          strict: true
+
+      - name: Build package
+        run: |
+          zip -r somafm-${{ env.VERSION }}.zip . -x \*.zip \*.sh \*.git\* \*README\* \*sublime-\* \*.DS_Store\* \*.template.xml
+      
+      - name: Calculate SHA
+        run: |
+          echo "SHA=$(shasum somafm-${{ env.VERSION }}.zip | awk '{print $1;}')" >> $GITHUB_ENV
+      
+      - name: Create dev channel public XML file
+        uses: cuchi/jinja2-action@v1.2.2
+        with:
+          template: public.template.xml
+          output_file: public-dev.xml
+          strict: true
+
+      - name: Create release public XML file
+        if: env.RELEASE_CHANNEL == 'release'
+        uses: cuchi/jinja2-action@v1.2.2
+        with:
+          template: public.template.xml
+          output_file: public.xml
+          strict: true
+
+      - name: Switch branch, setup git for push
+        run: |
+          mv public*.xml /tmp
+          mv somafm-${{ env.VERSION }}.zip /tmp
+          git checkout gh-pages
+          cp /tmp/public*.xml .
+          cp /tmp/somafm-${{ env.VERSION }}*.zip ${{ env.FOLDER }}/
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          if [ "${{ env.RELEASE_CHANNEL }}" == "dev" ]; then
+            git add ${{ env.FOLDER }}/somafm-${{ env.VERSION }}.zip
+            COMMIT_MESSAGE_TYPE="development build"
+          else
+            COMMIT_MESSAGE_TYPE="release"
+          fi
+          git commit -m "Github Actions ${COMMIT_MESSAGE_TYPE} ${{ env.VERSION }}" -a
+
+      - name: Push changes to gh-pages
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        if: env.RELEASE_CHANNEL == 'release'
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          files: |
+            somafm-${{ env.VERSION }}.zip
