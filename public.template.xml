@@ -10,7 +10,7 @@
             <icon>https://raw.githubusercontent.com/danielvijge/lms-somafm/main/HTML/EN/plugins/SomaFM/SomaFM_svg.png</icon>
 {%- if env['RELEASE_CHANNEL'] == 'release' %}
             <url>https://github.com/danielvijge/lms-somafm/releases/download/{{ env['VERSION'] }}/somafm-{{ env['VERSION'] }}.zip</url>
-{%- else %}      
+{%- else %}
             <url>https://danielvijge.github.io/lms-somafm/{{ env['FOLDER'] }}/somafm-{{ env['VERSION'] }}.zip</url>
 {%- endif %}
             <link>https://github.com/danielvijge/lms-somafm</link>
