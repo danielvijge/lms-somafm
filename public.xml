@@ -7,6 +7,7 @@
             <title lang="EN">SomaFM</title>
             <desc lang="EN">Play radio channels from SomaFM</desc>
             <category>radio</category>
+            <icon>https://raw.githubusercontent.com/danielvijge/lms-somafm/main/HTML/EN/plugins/SomaFM/SomaFM_svg.png</icon>
             <url>https://github.com/danielvijge/lms-somafm/releases/download/0.1/somafm-0.1.zip</url>
             <link>https://github.com/danielvijge/lms-somafm</link>
             <sha>59d9d07351b0075c1fae98b106a124eb8ba9bfaf</sha>
