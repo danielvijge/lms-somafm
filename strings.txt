@@ -72,3 +72,12 @@ PLUGIN_SOMAFM_DESCRIPTION_IN_TITLE
 
 PLUGIN_SOMAFM_DESCRIPTION_IN_TITLE_DESC
 	EN	Show the channel description as part of the title if not already displayed on the second line.
+
+PLUGIN_SOMAFM_SUPPORT
+	EN	Donate
+
+PLUGIN_SOMAFM_SUPPORT_DESC
+	EN	Donate to SomaFM
+
+PLUGIN_SOMAFM_SUPPORT_TEXT
+	EN	SomaFM is entirely listener-supported and independent radio. Consider making a <a href="https://somafm.com/support/" target="_blank">donation</a> if you enjoy SomaFM.

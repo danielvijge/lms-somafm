@@ -44,4 +44,8 @@
         <input type="checkbox" class="stdedit" name="pref_descriptionInTitle"[% IF prefs.descriptionInTitle %] checked[% END %]>
     [% END %]
 
+    [% WRAPPER setting title="PLUGIN_SOMAFM_SUPPORT" desc="PLUGIN_SOMAFM_SUPPORT_DESC" %]
+        [% 'PLUGIN_SOMAFM_SUPPORT_TEXT' | getstring %]
+    [% END %]
+
 [% PROCESS settings/footer.html %]
