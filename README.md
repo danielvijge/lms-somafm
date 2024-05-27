@@ -18,7 +18,9 @@ The channels are retrieved from the channel list provided by SomaFM, so any new 
 
 ## Installation
 
-Add a new repository to the list, select SomaFM and restart Lyrion Music Server to finish the installation.
+This plugin is included in the default plugin list or Lyrion Music Server. Go to the settings page, click on _Manage Plugins_, and search for _SomaFM_. Restart Lyrion Music Server to finish the installation.
+
+To add the plugin repository directly, add a new repository XML file
 
     https://danielvijge.github.io/lms-somafm/public.xml
 
