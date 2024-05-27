@@ -128,13 +128,18 @@ sub _parseChannel {
 
     return {
         name => _getFirstLineText($channel, 0),
+        description => $channel->{'description'},
+        listeners => $channel->{'listeners'},
+        current_track => $channel->{'lastPlaying'},
+        genre => (join ', ', map ucfirst, split '\|', $channel->{'genre'}), # split genre and capitalise the first letter, so 'ambient|electronic' becomes 'Ambient, Electronic'
         line1 => _getFirstLineText($channel, 1),
         line2 => _getSecondLineText($channel),
         type => 'audio',
         on_select => 'play',
         url => $stream,
         play => $stream,
-        image => _getImage($channel)
+        image => _getImage($channel),
+        extid => "somafm:$channel->{'id'}",
     };
 }
 
