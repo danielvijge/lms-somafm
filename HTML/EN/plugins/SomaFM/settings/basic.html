@@ -9,6 +9,17 @@
     </div>
     [% END %]
 
+    [% WRAPPER setting title="PLUGIN_SOMAFM_STREAMING_QUALITY" desc="PLUGIN_SOMAFM_STREAMING_QUALITY_DESC" %]
+    <div class="prefDesc">
+        <select name="pref_streamingQuality" class="stdedit">
+                <option value="highest:aac"[% IF prefs.streamingQuality == "highest:aac" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_AAC' | getstring %]</option>
+                <option value="highest:mp3"[% IF prefs.streamingQuality == "highest:mp3" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_MP3' | getstring %]</option>
+                <option value="high:aacp"[% IF prefs.streamingQuality == "high:aacp" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGH_AACP' | getstring %]</option>
+                <option value="low:aacp"[% IF prefs.streamingQuality == "low:aacp" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_LOW_AACP' | getstring %]</option>
+        </select>
+    </div>
+    [% END %]
+
     [% WRAPPER setting title="PLUGIN_SOMAFM_ORDER_BY" desc="PLUGIN_SOMAFM_ORDER_BY_DESC" %]
     <div class="prefDesc">
         <select name="pref_orderBy" class="stdedit">
@@ -19,15 +30,8 @@
     </div>
     [% END %]
 
-    [% WRAPPER setting title="PLUGIN_SOMAFM_STREAMING_QUALITY" desc="PLUGIN_SOMAFM_STREAMING_QUALITY_DESC" %]
-    <div class="prefDesc">
-        <select name="pref_streamingQuality" class="stdedit">
-                <option value="highest:aac"[% IF prefs.streamingQuality == "highest:aac" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_AAC' | getstring %]</option>
-                <option value="highest:mp3"[% IF prefs.streamingQuality == "highest:mp3" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGHEST_MP3' | getstring %]</option>
-                <option value="high:aacp"[% IF prefs.streamingQuality == "high:aacp" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_HIGH_AACP' | getstring %]</option>
-                <option value="low:aacp"[% IF prefs.streamingQuality == "low:aacp" %] selected[% END %]>[% 'PLUGIN_SOMAFM_STREAMING_QUALITY_LOW_AACP' | getstring %]</option>
-        </select>
-    </div>
+    [% WRAPPER setting title="PLUGIN_SOMAFM_GROUP_BY_GENRE" desc="PLUGIN_SOMAFM_GROUP_BY_GENRE_DESC" %]
+        <input type="checkbox" class="stdedit" name="pref_groupByGenre"[% IF prefs.groupByGenre %] checked[% END %]>
     [% END %]
 
     [% WRAPPER setting title="PLUGIN_SOMAFM_SECOND_LINE_TEXT" desc="PLUGIN_SOMAFM_SECOND_LINE_TEXT_DESC" %]

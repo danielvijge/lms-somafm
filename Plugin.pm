@@ -29,7 +29,7 @@ my $log;
 # Get the data related to this plugin and preset certain variables with 
 # default values in case they are not set
 my $prefs = preferences('plugin.somafm');
-$prefs->init({ menuLocation => 'radio', orderBy => 'popular', streamingQuality => 'highest:aac', descriptionInTitle => 0, secondLineText => 'description' });
+$prefs->init({ menuLocation => 'radio', orderBy => 'popular', groupByGenre => 0, streamingQuality => 'highest:aac', descriptionInTitle => 0, secondLineText => 'description' });
 
 # This is the entry point in the script
 BEGIN {
@@ -90,7 +90,12 @@ sub _feedHandler {
                 my $http = shift;
                 my $json = eval { from_json($http->content) };
 
-                _parseChannels(_sortChannels($json->{'channels'}), $menu);
+                if ($prefs->get('groupByGenre')) {
+                    _parseChannelsWithGroupByGenre($json->{'channels'}, $menu);
+                }
+                else {
+                    _parseChannels(_sortChannels($json->{'channels'}), $menu);
+                }
 
                 $callback->({
                     items  => $menu
@@ -119,6 +124,39 @@ sub _parseChannels {
     for my $channel (@$channels) {
         push @$menu, _parseChannel($channel);
     }
+}
+
+sub _parseChannelsWithGroupByGenre {
+    my ($channels, $menu) = @_;
+
+    my %menu_items;
+
+    # Create submenus for each genre.
+    # First check if the genre menu doesn't exist yet. If if doesn't,
+    # create the menu item and let `items` reference to a (yet) empty
+    # array. Then for each genre, parse the channel and add it to the
+    # array. As this works by reference it can all be done in one loop.
+
+    for my $channel (@$channels) {
+        for my $genre (split('\|', $channel->{'genre'})) {
+            if (!exists($menu_items{$genre})) {
+                $menu_items{ $genre } = ();
+                push @$menu, {
+                    name => ucfirst($genre),
+                    items => \@{$menu_items{$genre}}
+                };
+            }
+            push @{ $menu_items{ $genre } }, _parseChannel($channel);
+        }
+    }
+
+    # Sort items within the submenus
+    foreach ( @$menu ) {
+        $_->{'items'} = _sortChannels($_->{'items'}); 
+    }
+
+    # Sort the genres themselves alphabetically
+    @$menu = sort { $a->{name} cmp $b->{name} } @$menu;
 }
 
 sub _parseChannel {

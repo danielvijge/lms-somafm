@@ -28,6 +28,12 @@ PLUGIN_SOMAFM_ORDER_BY_POLULARITY
 PLUGIN_SOMAFM_ORDER_BY_TITLE
 	EN	Title
 
+PLUGIN_SOMAFM_GROUP_BY_GENRE
+	EN	Group by genre
+
+PLUGIN_SOMAFM_GROUP_BY_GENRE_DESC
+	EN	Group channels by genre. This create submenus for each genre. Channels are sorted within the genre menu
+
 PLUGIN_SOMAFM_ORDER_BY_NONE
 	EN	No sorting
 
