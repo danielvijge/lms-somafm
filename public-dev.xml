@@ -3,14 +3,14 @@
         <title lang="EN">SomaFM plugin repository</title>
     </details>
     <plugins>
-        <plugin name="SomaFM" version="0.1.8-dev" minTarget="7.9" maxTarget="*">
+        <plugin name="SomaFM" version="0.2" minTarget="7.9" maxTarget="*">
             <title lang="EN">SomaFM</title>
             <desc lang="EN">Play radio channels from SomaFM</desc>
             <category>radio</category>
             <icon>https://raw.githubusercontent.com/danielvijge/lms-somafm/main/HTML/EN/plugins/SomaFM/SomaFM_svg.png</icon>
-            <url>https://danielvijge.github.io/lms-somafm/dev-builds/somafm-0.1.8-dev.zip</url>
+            <url>https://github.com/danielvijge/lms-somafm/releases/download/0.2/somafm-0.2.zip</url>
             <link>https://github.com/danielvijge/lms-somafm</link>
-            <sha>7be8c264b4127483b6f6ee0d4df732c3da6ebf7c</sha>
+            <sha>a74603dc0b9c01efe395bb0e4f6bc53b67ace687</sha>
             <creator>Daniel Vijge</creator></plugin>
     </plugins>
 </extensions>
