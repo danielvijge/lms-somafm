@@ -162,8 +162,6 @@ sub _parseChannelsWithGroupByGenre {
 sub _parseChannel {
     my ($channel) = @_;
 
-    my $stream = _getStream($channel);
-
     return {
         name => _getFirstLineText($channel, 0),
         description => $channel->{'description'},
@@ -173,18 +171,9 @@ sub _parseChannel {
         line1 => _getFirstLineText($channel, 1),
         line2 => _getSecondLineText($channel),
         type => 'audio',
-        on_select => 'play',
-        url => $stream,
-        play => $stream,
-        image => _getImage($channel),
-        extid => "somafm:$channel->{'id'}",
+        url => _getStream($channel),
+        image => $channel->{'largeimage'}
     };
-}
-
-sub _getImage {
-    my ($channel) = shift;
-    
-    return $channel->{'largeimage'};
 }
 
 sub _getStream {
