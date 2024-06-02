@@ -22,7 +22,7 @@ use constant HTTP_TIMEOUT => 15;
 use constant HTTP_CACHE => 1;
 use constant HTTP_EXPIRES => '1h';
 
-use constant CHANNEL_API => 'https://api.somafm.com/channels.json';
+use constant CHANNEL_API => 'http://api.somafm.com/channels.json';
 
 my $log;
 
