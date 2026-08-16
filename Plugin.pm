@@ -12,7 +12,7 @@ use vars qw(@ISA);
 use base qw(Slim::Plugin::OPMLBased);
 use feature qw(fc);
 
-use JSON::XS::VersionOneAndTwo;
+use JSON::XS qw(decode_json);
 
 use Slim::Utils::Strings qw(string cstring);
 use Slim::Utils::Prefs;
@@ -88,7 +88,7 @@ sub _feedHandler {
             # Called when a response has been received for the request.
             sub {
                 my $http = shift;
-                my $json = eval { from_json($http->content) };
+                my $json = eval { decode_json($http->content) };
 
                 if ($prefs->get('groupByGenre')) {
                     _parseChannelsWithGroupByGenre($client, $json->{'channels'}, $menu);
